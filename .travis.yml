@@ -11,13 +11,9 @@ addons:
   apt:
     packages:
       - docker-ce
-deploy:
-  script:
-    - chmod +x ./deploy-envs.sh
-    - chmod +x ./scripts/build.sh
-    - chmod +x ./scripts/deploy.sh
-    - sh scripts/build.sh
-    - sh scripts/deploy.sh
-    on:
-      branch: master
-    #- if [ "$TRAVIS_BRANCH" == "master" ]; then sh scripts/deploy.sh; fi
+script:
+  - chmod +x ./deploy-envs.sh
+  - chmod +x ./scripts/build.sh
+  - chmod +x ./scripts/deploy.sh
+  - cd scripts && ./build.sh
+  - if [ "$TRAVIS_BRANCH" == "master" ]; then ./deploy.sh; fi
