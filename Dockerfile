@@ -2,8 +2,7 @@ FROM microsoft/aspnetcore-build:2.0 AS build-env
 COPY src /app
 WORKDIR /app
 
-COPY NuGet.Config /root/.nuget/NuGet/
-RUN dotnet restore --configfile ../NuGet.Config
+RUN dotnet restore --configfile /root/src/NuGet.Config
 RUN dotnet publish -c Release -o out
 
 # Build runtime image
